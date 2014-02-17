@@ -10,6 +10,13 @@ use App\Models\Category;
 
 class HomeController extends BaseController {
 
+    protected $category;
+
+    public function __construct(Category $category)
+    {
+        $this->category = $category;
+    }
+
     public function showIndex()
     {
         return View::make('index');
@@ -17,10 +24,11 @@ class HomeController extends BaseController {
 
     public function showCategory($category)
     {
-        $file = base_path() . '/faq/' . $category;
-        if (!File::exists($file))
+        $c = $this->category->where('name', $category)->first();
+        if (!$c)
             return 'error,404';
-        return View::make('category');
+        
+        return View::make('category', array('category' => $c, 'faqs' => $c->faqs()));
     }
 
     public function showFaq($category, $faq)
@@ -35,7 +43,7 @@ class HomeController extends BaseController {
     public function showSidebar($category = NULL)
     {
         $out = Array();
-        foreach(Category::all() as $category)
+        foreach($this->category->all() as $category)
             $out[] = $category->path;
         var_dump($out);
         var_dump(implode('<br />', $out));

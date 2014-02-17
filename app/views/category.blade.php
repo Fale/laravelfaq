@@ -2,8 +2,13 @@
 
 @section('content')
 
-<h1>Home Page</h1>
-
+<h1>{{{ $category->name }}}</h1>
+<ul>
+@foreach($faqs as $faq)
+    {{ print_r($faq) }}
+    <li>{{{ $faq->name }}}</li>
+@endforeach
+</ul>
 @stop
 
 @section('sidebar')
