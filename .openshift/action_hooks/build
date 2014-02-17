@@ -6,13 +6,14 @@ if [ ! -f "$OPENSHIFT_DATA_DIR/composer.phar" ]; then
     curl -s https://getcomposer.org/installer | php -- --install-dir=$OPENSHIFT_DATA_DIR
     unset GIT_DIR
     cd $OPENSHIFT_REPO_DIR
-    php $OPENSHIFT_DATA_DIR/composer.phar install
+    php composer.phar config -g github-protocols https
+    php composer.phar install
 else
 	php $OPENSHIFT_DATA_DIR/composer.phar self-update
-    php composer.phar config -g github-protocols https
     unset GIT_DIR
     cd $OPENSHIFT_REPO_DIR
-    php $OPENSHIFT_DATA_DIR/composer.phar update
+    php composer.phar config -g github-protocols https
+    php composer.phar update
 fi
  
 
