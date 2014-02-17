@@ -17,6 +17,8 @@ class CreateFaqsTable extends Migration {
             $table->integer('order');
             $table->string('name');
             $table->string('path');
+            $table->integer('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

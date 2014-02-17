@@ -4,6 +4,9 @@ namespace App\Database\Seeds;
 
 use Seeder;
 use DB;
+use File;
+
+use App\Models\Category;
 
 class FaqsTableSeeder extends Seeder {
 
@@ -11,13 +14,13 @@ class FaqsTableSeeder extends Seeder {
     {
         $faqs = Array();
 
-        foreach (scandir(base_path() . '/faq') as $element)
-            if (!is_dir(base_path() . '/faq/' . $element))
-                $faqs[] = Array(
-                    'order' => 0,
-                    'name' => $element,
-                    'path' => $element
-                );
+        foreach (File::allFiles(base_path() . '/faq') as $element)
+            $faqs[] = Array(
+                'order' => 0,
+                'name' => $element->getFileName(),
+                'path' => $element->getRelativePathname(),
+                'category_id' => Category::where('path', $element->getRelativePath())->pluck('id'),
+            );
 
         if (count($faqs))
             DB::table('faqs')->insert($faqs);

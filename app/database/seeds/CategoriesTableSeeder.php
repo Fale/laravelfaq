@@ -4,6 +4,7 @@ namespace App\Database\Seeds;
 
 use Seeder;
 use DB;
+use File;
 
 class CategoriesTableSeeder extends Seeder {
 
@@ -11,15 +12,15 @@ class CategoriesTableSeeder extends Seeder {
     {
         $categories = Array();
 
-        foreach (scandir(base_path() . '/faq') as $element)
-            if (is_dir(base_path() . '/faq/' . $element) AND $element != '.' AND $element != '..')
-                $categories[] = Array(
-                    'order' => 0,
-                    'name' => $element,
-                    'path' => $element
-                );
+        foreach (File::directories(base_path() . '/faq') as $element)
+            $categories[] = Array(
+                'order' => 0,
+                'name' => str_replace(base_path() . '/faq/', '', $element),
+                'path' => str_replace(base_path() . '/faq/', '', $element),
+            );
 
-        DB::table('categories')->insert($categories);
+        if (count($categories))
+            DB::table('categories')->insert($categories);
     }
 
 }
