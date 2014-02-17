@@ -4,12 +4,13 @@ export COMPOSER_HOME="$OPENSHIFT_DATA_DIR/.composer"
  
 if [ ! -f "$OPENSHIFT_DATA_DIR/composer.phar" ]; then
     curl -s https://getcomposer.org/installer | php -- --install-dir=$OPENSHIFT_DATA_DIR
-    php $OPENSHIFT_REPO_DIR/composer.phar config -g github-protocols https
-    php $OPENSHIFT_REPO_DIR/composer.phar install
+    php $OPENSHIFT_DATA_DIR/composer.phar config -g github-protocols https
+    ( unset GIT_DIR ; cd $OPENSHIFT_REPO_DIR ; php $OPENSHIFT_DATA_DIR/composer.phar install )
 else
-	php $OPENSHIFT_DATA_DIR/composer.phar self-update
-    php $OPENSHIFT_REPO_DIR/composer.phar config -g github-protocols https
-    php $OPENSHIFT_REPO_DIR/composer.phar update
+    php $OPENSHIFT_DATA_DIR/composer.phar self-update
+    php $OPENSHIFT_DATA_DIR/composer.phar config -g github-protocols https
+    ( unset GIT_DIR ; cd $OPENSHIFT_REPO_DIR ; php $OPENSHIFT_DATA_DIR/composer.phar update )
 fi
- 
+
+
 
