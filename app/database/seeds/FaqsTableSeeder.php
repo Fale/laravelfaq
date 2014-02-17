@@ -16,8 +16,8 @@ class FaqsTableSeeder extends Seeder {
 
         foreach (File::allFiles(base_path() . '/faq') as $element)
         {
-            $filename = explode('.', $element->getFileName())[0],
-            $pathname = explode('.', $element->getRelativePathname())[0],
+            $filename = explode('.', $element->getFileName());
+            $pathname = explode('.', $element->getRelativePathname());
             $faqs[] = Array(
                 'order' => 0,
                 'name' => $filename[0],
