@@ -4,10 +4,9 @@
 
 <h1>{{{ $category->name }}}</h1>
 <ul>
-@foreach($faqs as $faq)
-    {{ print_r($faq) }}
-    <li>{{{ $faq->name }}}</li>
-@endforeach
+    @foreach($faqs as $faq)
+        <li>{{ link_to( '/' . $faq->path, $faq->name) }}</li>
+    @endforeach
 </ul>
 @stop
 

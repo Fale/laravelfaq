@@ -27,7 +27,7 @@ class HomeController extends BaseController {
         $c = $this->category->where('name', $category)->first();
         if (!$c)
             return 'error,404';
-        return View::make('category', array('category' => $c, 'faqs' => $c->faqs()));
+        return View::make('category', array('category' => $c, 'faqs' => $c->faqs));
     }
 
     public function showFaq($category, $faq)

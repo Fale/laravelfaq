@@ -13,4 +13,9 @@ class Category extends Eloquent {
         return $this->hasMany('App\Models\Faq');
     }
 
+    public function listfaq()
+    {
+        $faq = new Faq;
+        return $faq->where('category_id', $this->id)->get();
+    }
 }
