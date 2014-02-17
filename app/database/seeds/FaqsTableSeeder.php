@@ -15,12 +15,16 @@ class FaqsTableSeeder extends Seeder {
         $faqs = Array();
 
         foreach (File::allFiles(base_path() . '/faq') as $element)
+        {
+            $filename = explode('.', $element->getFileName())[0],
+            $pathname = explode('.', $element->getRelativePathname())[0],
             $faqs[] = Array(
                 'order' => 0,
-                'name' => explode('.', $element->getFileName())[0],
-                'path' => explode('.', $element->getRelativePathname())[0],
+                'name' => $filename[0],
+                'path' => $pathname[0],
                 'category_id' => Category::where('path', $element->getRelativePath())->pluck('id'),
             );
+        }
 
         if (count($faqs))
             DB::table('faqs')->insert($faqs);
