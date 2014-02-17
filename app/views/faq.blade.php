@@ -5,5 +5,5 @@
 @stop
 
 @section('sidebar')
-    {{ $sidebar }}
+    {{ print_r($sidebar) }}
 @stop

@@ -27,7 +27,6 @@ class HomeController extends BaseController {
         $c = $this->category->where('name', $category)->first();
         if (!$c)
             return 'error,404';
-        
         return View::make('category', array('category' => $c, 'faqs' => $c->faqs()));
     }
 
@@ -37,7 +36,9 @@ class HomeController extends BaseController {
         if (!File::exists($file))
             return 'error,404';
         $content = Markdown::transformExtra(File::get($file));
-        return View::make('faq', array('content' => $content, 'sidebar' => $this->showSidebar()));
+        $sidebar =  $this->showSidebar();
+        print_r($sidebar);
+        return View::make('faq', array('content' => $content, 'sidebar' => $sidebar));
     }
 
     public function showSidebar($category = NULL)
@@ -45,8 +46,6 @@ class HomeController extends BaseController {
         $out = Array();
         foreach($this->category->all() as $category)
             $out[] = $category->path;
-        var_dump($out);
-        var_dump(implode('<br />', $out));
         return implode('<br />', $out);
     }
 
