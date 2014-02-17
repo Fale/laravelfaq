@@ -37,7 +37,7 @@ class HomeController extends BaseController {
             return 'error,404';
         $content = Markdown::transformExtra(File::get($file));
         $sidebar =  $this->showSidebar();
-        print_r($sidebar);
+
         return View::make('faq', array('content' => $content, 'sidebar' => $sidebar));
     }
 
@@ -46,7 +46,7 @@ class HomeController extends BaseController {
         $out = Array();
         foreach($this->category->all() as $category)
             $out[] = $category->path;
-        return implode('<br />', $out);
+        return $out;
     }
 
 }

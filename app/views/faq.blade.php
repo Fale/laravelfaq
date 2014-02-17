@@ -5,5 +5,9 @@
 @stop
 
 @section('sidebar')
-    {{ print_r($sidebar) }}
+    <ul>
+        @foreach($sidebar as $s)
+            <li>{{ link_to('/' . $s, $s) }}</li>
+        @endforeach
+    </ul>
 @stop

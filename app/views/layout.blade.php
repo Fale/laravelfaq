@@ -33,7 +33,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-2">
-          @yield('sidabar')
+          @yield('sidebar')
         </div>
         <div class="col-md-10">
           @if(Session::has('message-success'))
