@@ -1,3 +1,3 @@
 #!/bin/bash
  
-cd $OPENSHIFT_REPO_DIR; php artisan migrate --env=openshift
+cd $OPENSHIFT_REPO_DIR; php artisan migrate:refresh --seed --env=openshift
