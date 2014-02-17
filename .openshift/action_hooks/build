@@ -9,7 +9,7 @@ if [ ! -f "$OPENSHIFT_DATA_DIR/composer.phar" ]; then
 else
     php $OPENSHIFT_DATA_DIR/composer.phar self-update
     php $OPENSHIFT_DATA_DIR/composer.phar config -g github-protocols https
-    ( unset GIT_DIR ; cd $OPENSHIFT_REPO_DIR ; php $OPENSHIFT_DATA_DIR/composer.phar update --prefer-dist )
+    ( unset GIT_DIR ; cd $OPENSHIFT_REPO_DIR ; php $OPENSHIFT_DATA_DIR/composer.phar update )
 fi
 
 
