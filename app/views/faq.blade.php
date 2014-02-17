@@ -1,10 +1,9 @@
 @extends('layout')
 
 @section('content')
-
-<h1>Home Page</h1>
-
+    {{ $content }}
 @stop
 
 @section('sidebar')
+    {{ $sidebar }}
 @stop
