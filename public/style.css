@@ -2,15 +2,16 @@ body {
     padding-top: 60px;
 }
 
-a {
-    color: #f4645f;
+a,
+a:hover {
+    color: #F4645F;
     font-weight: bold;
 }
 
-// Sidebar
+/* Sidebar */
 div#sidebar {
-    color: #f4645f;
-    margin: 20px;
+    color: #F4645F;
+    margin-top: 20px;
 }
 
 div#sidebar ul{
