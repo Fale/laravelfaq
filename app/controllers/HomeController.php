@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-use File;
 use Markdown;
 use View;
 
 use App\Models\Category;
+use App\Models\Faq;
 
 class HomeController extends BaseController {
 
@@ -14,9 +14,12 @@ class HomeController extends BaseController {
 
     protected $category;
 
-    public function __construct(Category $category)
+    protected $faq;
+
+    public function __construct(Category $category, Faq $faq)
     {
         $this->category = $category;
+        $this->faq = $faq;
     }
 
     public function showIndex()
@@ -38,12 +41,12 @@ class HomeController extends BaseController {
 
     public function showFaq($category, $faq)
     {
-        $file = base_path() . '/faq/' . $category . '/' . $faq . '.md';
-        if (!File::exists($file))
+        $f = $this->faq->where('path', $category . '/' . $faq)->first();
+        if (!$f)
             return 'error,404';
-        $this->layout->title = "Title";
         $this->layout->sidebar = $this->showSidebar();
-        $this->layout->content = View::Make('faq', array('content' => Markdown::transformExtra(File::get($file))));
+        $this->layout->title = $f->question; 
+        $this->layout->content = View::Make('faq', array('content' => Markdown::transformExtra($f->answer)));
     }
 
     public function showSidebar($category = NULL)
