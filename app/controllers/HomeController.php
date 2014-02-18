@@ -10,6 +10,8 @@ use App\Models\Category;
 
 class HomeController extends BaseController {
 
+    protected $layout = 'layout';
+
     protected $category;
 
     public function __construct(Category $category)
@@ -19,7 +21,9 @@ class HomeController extends BaseController {
 
     public function showIndex()
     {
-        return View::make('index');
+        $this->layout->title = "Home page";
+        $this->layout->sidebar = $this->showSidebar();
+        $this->layout->content = View::make('index');
     }
 
     public function showCategory($category)
@@ -27,7 +31,9 @@ class HomeController extends BaseController {
         $c = $this->category->where('name', $category)->first();
         if (!$c)
             return 'error,404';
-        return View::make('category', array('category' => $c, 'faqs' => $c->faqs));
+        $this->layout->title = ucfirst($c->name);
+        $this->layout->sidebar = $this->showSidebar();
+        $this->layout->content = View::make('category', array('category' => $c));
     }
 
     public function showFaq($category, $faq)
@@ -35,17 +41,17 @@ class HomeController extends BaseController {
         $file = base_path() . '/faq/' . $category . '/' . $faq . '.md';
         if (!File::exists($file))
             return 'error,404';
-        $content = Markdown::transformExtra(File::get($file));
-        $sidebar =  $this->showSidebar();
-
-        return View::make('faq', array('content' => $content, 'sidebar' => $sidebar));
+        $this->layout->title = "Title";
+        $this->layout->sidebar = $this->showSidebar();
+        $this->layout->content = View::Make('faq', array('content' => Markdown::transformExtra(File::get($file))));
     }
 
     public function showSidebar($category = NULL)
     {
-        $out = Array();
-        foreach($this->category->all() as $category)
-            $out[] = $category->path;
+        $out = "<ul>";
+        foreach($this->category->all() as $c)
+            $out .= "<li><a href=\"/" . $c->path . "\">" . ucfirst($c->name) . "</a></li>";
+        $out.="<ul>";
         return $out;
     }
 

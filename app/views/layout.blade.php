@@ -32,17 +32,18 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
-          @yield('sidebar')
+        <div class="col-md-2" id="sidebar">
+          {{ $sidebar }}
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10" id="container">
           @if(Session::has('message-success'))
             <div class="alert alert-success">{{ Session::get('message-success') }}</div>
           @endif
           @if(Session::has('message-error'))
             <div class="alert alert-danger">{{ Session::get('message-error') }}</div>
           @endif
-          @yield('content')
+          <h1>{{ $title }}</h1>
+          {{ $content }}
         </div>
       </div>
     </div>

@@ -1,3 +1,18 @@
 body {
     padding-top: 60px;
 }
+
+a {
+    color: #f4645f;
+    font-weight: bold;
+}
+
+// Sidebar
+div#sidebar {
+    color: #f4645f;
+}
+
+div#sidebar ul{
+    list-style: none;
+    list-style-image: none;
+}
