@@ -22,6 +22,7 @@ class FaqsTableSeeder extends Seeder {
                 'order' => 0,
                 'name' => $filename[0],
                 'path' => $pathname[0],
+                'question' => $this->getQuestion($pathname[0]),
                 'category_id' => Category::where('path', $element->getRelativePath())->pluck('id'),
             );
         }
@@ -30,4 +31,9 @@ class FaqsTableSeeder extends Seeder {
             DB::table('faqs')->insert($faqs);
     }
 
+    public function getQuestion($path)
+    {
+        preg_match( "/^#([[:print:]]*)\n(.*)/is", File::get(base_path() . '/faq/' . $path . ".md"), $match);
+        return $match[1];
+    }
 }
