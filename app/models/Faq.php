@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Models;
+<?php namespace App\Models;
 
 use Eloquent;
 use File;
@@ -19,4 +17,10 @@ class Faq extends Eloquent {
         preg_match( "/^#([[:print:]]*)\n(.*)/is", File::get(base_path() . '/faq/' . $this->path . ".md"), $match);
         return $match[2];
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag');
+    }
+
 }

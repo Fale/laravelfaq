@@ -12,3 +12,5 @@ To deploy Laravel to a shared hosting you have two methods:
 * copy Laravl in the folder **parent** of `public_html`
 * remove the `public_html` folder
 * make `public_html` as a symbolic link of `public`
+
+{"tags": ["asd", "lol", "rotfl"]}

@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Database\Seeds;
+<?php namespace App\Database\Seeds;
 
 use Seeder;
 use DB;
@@ -36,4 +34,5 @@ class FaqsTableSeeder extends Seeder {
         preg_match( "/^#([[:print:]]*)\n(.*)/is", File::get(base_path() . '/faq/' . $path . ".md"), $match);
         return $match[1];
     }
+
 }
