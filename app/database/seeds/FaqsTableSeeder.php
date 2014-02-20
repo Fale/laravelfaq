@@ -12,8 +12,7 @@ class FaqsTableSeeder extends Seeder {
     {
         $faqs = Array();
 
-        foreach (File::allFiles(base_path() . '/faq') as $element)
-        {
+        foreach (File::allFiles(base_path() . '/faq') as $element) {
             $filename = explode('.', $element->getFileName());
             $pathname = explode('.', $element->getRelativePathname());
             $faqs[] = Array(

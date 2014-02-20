@@ -5,6 +5,7 @@ use View;
 
 use App\Models\Category;
 use App\Models\Faq;
+use App\Models\Tag;
 
 class HomeController extends BaseController {
 
@@ -14,10 +15,13 @@ class HomeController extends BaseController {
 
     protected $faq;
 
-    public function __construct(Category $category, Faq $faq)
+    protected $tag;
+
+    public function __construct(Category $category, Faq $faq, Tag $tag)
     {
         $this->category = $category;
         $this->faq = $faq;
+        $this->tag = $tag;
     }
 
     public function showIndex()
@@ -50,7 +54,10 @@ class HomeController extends BaseController {
     {
         $out = "<ul>";
         foreach($this->category->all() as $c)
-            $out .= "<li><a href=\"/" . $c->path . "\">" . ucfirst($c->name) . "</a></li>";
+            $out .= "<li><a href=\"/" . $c->path . "\">" . ucfirst($c->name) . "</a> (" . $c->faqs_number .")</li>";
+        $out.="<ul>";
+        foreach($this->tag->all() as $t)
+            $out .= "<li>" . ucfirst($t->name) . " (" . $t->faqs_number .")</li>";
         $out.="<ul>";
         return $out;
     }

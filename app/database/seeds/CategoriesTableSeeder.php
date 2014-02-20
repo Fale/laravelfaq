@@ -15,6 +15,7 @@ class CategoriesTableSeeder extends Seeder {
                 'order' => 0,
                 'name' => str_replace(base_path() . '/faq/', '', $element),
                 'path' => str_replace(base_path() . '/faq/', '', $element),
+                'faqs_number' => 0
             );
 
         if (count($categories))

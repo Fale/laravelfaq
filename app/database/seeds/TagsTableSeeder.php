@@ -16,7 +16,7 @@ class TagsTableSeeder extends Seeder {
         foreach (Faq::all() as $faq) {
             foreach ($this->getTags($faq->path) as $tag) {
                 if (!Tag::where('name', $tag)->pluck(1))
-                    $tagId = DB::table('tags')->insertGetId(Array('name' => $tag));
+                    $tagId = DB::table('tags')->insertGetId(Array('name' => $tag, 'faqs_number' => 0));
                 else
                     $tagId = Tag::where('name', $tag)->pluck(1);
                 $tags[] = Array('faq_id' => $faq->id, 'tag_id' => $tagId);
@@ -25,6 +25,11 @@ class TagsTableSeeder extends Seeder {
 
         if (count($tags))
             DB::table('faq_tag')->insert($tags);
+
+        foreach (Tag::all() as $tag) {
+            $tag->faqs_number = $tag->faqs->count();
+            $tag->save();
+        }
     }
 
     public function getTags($path)

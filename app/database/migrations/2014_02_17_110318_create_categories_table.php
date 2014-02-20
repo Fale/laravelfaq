@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration {
             $table->integer('order');
             $table->string('name');
             $table->string('path');
+            $table->integer('faqs_number');
         });
     }
 
