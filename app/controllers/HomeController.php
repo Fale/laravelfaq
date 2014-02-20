@@ -24,7 +24,6 @@ class HomeController extends BaseController {
 
     public function showIndex()
     {
-        $this->layout->title = "Home page";
         $this->layout->sidebar = $this->showSidebar();
         $this->layout->content = View::make('index');
     }
