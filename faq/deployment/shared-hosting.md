@@ -13,4 +13,4 @@ To deploy Laravel to a shared hosting you have two methods:
 * remove the `public_html` folder
 * make `public_html` as a symbolic link of `public`
 
-{"tags": ["asd", "lol", "rotfl"]}
+{"tags": ["deploy", "hosting", "cPanel", "folders"]}
