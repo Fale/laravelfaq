@@ -26,6 +26,7 @@ class HomeController extends BaseController {
 
     public function showIndex()
     {
+        $this->layout->title = "Laravel FAQ";
         $this->layout->sidebar = View::make('sidebar');
         $this->layout->content = View::make('index');
     }
