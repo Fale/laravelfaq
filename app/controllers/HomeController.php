@@ -59,7 +59,7 @@ class HomeController extends BaseController {
         $out.="</ul>";
         $out.="<h3>Tags</h3>";
         $out.="<ul>";
-        foreach($this->tag->all() as $t)
+        foreach($this->tag->orderBy('name')->get() as $t)
             $out .= "<li>" . ucfirst($t->name) . " (" . $t->faqs_number .")</li>";
         $out.="</ul>";
         return $out;
