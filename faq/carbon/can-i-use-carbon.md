@@ -12,4 +12,4 @@ Add to the `aliases` array in `app/config/app.conf` the following line:
 
 Now you can call it from everywhere in the project in the classic way: `$carbon = new Carbon;`.
 
-{"tag": ["Carbon", "aliases", "namespaces"]}
+{"tags": ["Carbon", "aliases", "namespaces"]}

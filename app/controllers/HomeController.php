@@ -26,7 +26,7 @@ class HomeController extends BaseController {
 
     public function showIndex()
     {
-        $this->layout->sidebar = $this->showSidebar();
+        $this->layout->sidebar = View::make('sidebar');
         $this->layout->content = View::make('index');
     }
 
@@ -36,7 +36,7 @@ class HomeController extends BaseController {
         if (!$c)
             return 'error,404';
         $this->layout->title = ucfirst($c->name);
-        $this->layout->sidebar = $this->showSidebar();
+        $this->layout->sidebar = View::make('sidebar');
         $this->layout->content = View::make('category', array('category' => $c));
     }
 
@@ -45,24 +45,9 @@ class HomeController extends BaseController {
         $f = $this->faq->where('path', $category . '/' . $faq)->first();
         if (!$f)
             return 'error,404';
-        $this->layout->sidebar = $this->showSidebar();
         $this->layout->title = $f->question; 
+        $this->layout->sidebar = View::make('sidebar');
         $this->layout->content = View::Make('faq', array('content' => Markdown::transformExtra($f->answer)));
-    }
-
-    public function showSidebar($category = NULL)
-    {
-        $out ="<h3>Categories</h3>";
-        $out.= "<ul>";
-        foreach($this->category->all() as $c)
-            $out .= "<li><a href=\"/" . $c->path . "\">" . ucfirst($c->name) . "</a> (" . $c->faqs_number .")</li>";
-        $out.="</ul>";
-        $out.="<h3>Tags</h3>";
-        $out.="<ul>";
-        foreach($this->tag->orderBy('name')->get() as $t)
-            $out .= "<li>" . ucfirst($t->name) . " (" . $t->faqs_number .")</li>";
-        $out.="</ul>";
-        return $out;
     }
 
 }

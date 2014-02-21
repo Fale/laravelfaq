@@ -13,7 +13,6 @@ class CreateFaqTagTable extends Migration {
 	public function up()
 	{
 		Schema::create('faq_tag', function(Blueprint $table) {
-			$table->increments('id');
             $table->integer('faq_id')->unsigned();
             $table->integer('tag_id')->unsigned();
 		});

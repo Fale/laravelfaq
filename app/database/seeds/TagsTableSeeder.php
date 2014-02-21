@@ -15,10 +15,10 @@ class TagsTableSeeder extends Seeder {
 
         foreach (Faq::all() as $faq) {
             foreach ($this->getTags($faq->path) as $tag) {
-                if (!Tag::where('name', $tag)->pluck(1))
+                if (!Tag::where('name', $tag)->count())
                     $tagId = DB::table('tags')->insertGetId(Array('name' => $tag, 'faqs_number' => 0));
                 else
-                    $tagId = Tag::where('name', $tag)->pluck(1);
+                    $tagId = Tag::where('name', $tag)->pluck('id');
                 $tags[] = Array('faq_id' => $faq->id, 'tag_id' => $tagId);
             }
         }
