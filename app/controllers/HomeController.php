@@ -52,13 +52,16 @@ class HomeController extends BaseController {
 
     public function showSidebar($category = NULL)
     {
-        $out = "<ul>";
+        $out ="<h3>Categories</h3>";
+        $out.= "<ul>";
         foreach($this->category->all() as $c)
             $out .= "<li><a href=\"/" . $c->path . "\">" . ucfirst($c->name) . "</a> (" . $c->faqs_number .")</li>";
+        $out.="</ul>";
+        $out.="<h3>Tags</h3>";
         $out.="<ul>";
         foreach($this->tag->all() as $t)
             $out .= "<li>" . ucfirst($t->name) . " (" . $t->faqs_number .")</li>";
-        $out.="<ul>";
+        $out.="</ul>";
         return $out;
     }
 

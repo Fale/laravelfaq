@@ -14,8 +14,12 @@ div#sidebar {
     margin-top: 20px;
 }
 
-div#sidebar ul{
+div#sidebar ul {
     list-style: none;
     list-style-image: none;
     padding-left: 0;
+}
+
+div#sidebar h3 {
+    color: #333333;
 }
