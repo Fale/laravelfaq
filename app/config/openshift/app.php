@@ -2,7 +2,7 @@
 
 return array(
 
-    'debug' => true,
+    'debug' => false,
     'url' => 'http://http://zend-tuttiisanti.rhcloud.com',
 
 );
