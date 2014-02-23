@@ -2,12 +2,12 @@
 
 You can create a Git repository for your Laravel project with these steps:
 
-    laravel:~$ cd myapp
-    laravel:~/myapp$ git init
+    ~$ cd myapp
+    ~/myapp$ git init
 
 That's it. Try checking the status.
 
-    laravel:~/myapp$ git status
+    ~/myapp$ git status
 
 You should see all the untracked files.
 
@@ -36,17 +36,17 @@ Notice the file `composer.lock` is not tracked? If you want to add it, you shoul
 
 If you haven't configured Git with your name and email, it's easy.
 
-    laravel:~/myapp$ git config --global user.email "you@example.com"
-    laravel:~/myapp$ git config --global user.name "Your Name"
+    ~/myapp$ git config --global user.email "you@example.com"
+    ~/myapp$ git config --global user.name "Your Name"
 
 You can add everything and commit it to your repository with two commands.
 
-    laravel:~/myapp$ git add .
-    laravel:~/myapp$ git commit -m "Initial commit"
+    ~/myapp$ git add .
+    ~/myapp$ git commit -m "Initial commit"
 
 And a final status will show you nothing's changed.
 
-    laravel:~/myapp$ git status
+    ~/myapp$ git status
 
 You should see the following.
 
