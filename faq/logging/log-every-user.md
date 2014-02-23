@@ -1,4 +1,4 @@
-# How can Ilog all user requests?
+# How can I log all user requests?
 
 You can do it like this:
 
