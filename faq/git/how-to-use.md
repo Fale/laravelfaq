@@ -53,4 +53,4 @@ You should see the following.
     # On branch master
     nothing to commit, working directory clean
 
-{"tags": ['git', 'composer']}
+{"tags": ["git", "composer"]}
