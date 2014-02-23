@@ -3,6 +3,7 @@
   <head>
     <title>Laravel FAQ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="RORCsuWJ8rLTLqLMRG5DtIBkry0O_ddaly5dd8efOHo" />
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     @yield('css', '')
     <link href="/style.css" rel="stylesheet">
