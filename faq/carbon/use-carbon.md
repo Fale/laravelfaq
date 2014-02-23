@@ -1,6 +1,6 @@
-# Can I use Carbon in a Laravel 4 project?
+# How can I use Carbon in a Laravel 4 project?
 
-Yes, to do it you can use two methods:
+There are two methods:
 
 ## Method 1
 Every time you need Carbon, you call it as `Carbon\Carbon` (ie: `$carbon = new Carbon\Carbon;`)
